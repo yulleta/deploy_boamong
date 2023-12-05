@@ -450,90 +450,230 @@ def show_ppl_plot():
                 profile_data = profile.to_dict()
                 found = True  # 일치하는 프로필을 찾았음
 
-                with st.expander(str(profile_data.get("year")) + "기 " + profile_data.get("name")):
                 
-                    st.markdown("#### 🧙프로필 \n")
-                    col1, col2, col3 = st.columns(3)
+                st.markdown("#### 🧙프로필 \n")
+                col1, col2, col3 = st.columns(3)
 
-                    with col1:
-                        st.markdown("##### 🔹 이름")
-                        st.markdown(f'**{profile_data.get("name")}**')
-                        st.markdown("##### 🔹 관심분야")
-                        interests = profile_data.get("interest")
-                        for interest in interests:
-                            st.markdown(f'**{interest}**')
-                    with col2:
-                        st.markdown("##### 🔹 기수")
-                        st.markdown(f'**{profile_data.get("year")}**')
-                        st.markdown("##### 🔹 한줄 소개")
-                        st.markdown(f'**{profile_data.get("introduction")}**')
+                with col1:
+                    st.markdown("##### 🔹 이름")
+                    st.markdown(f'**{profile_data.get("name")}**')
+                    st.markdown("##### 🔹 관심분야")
+                    interests = profile_data.get("interest")
+                    for interest in interests:
+                        st.markdown(f'**{interest}**')
+                with col2:
+                    st.markdown("##### 🔹 기수")
+                    st.markdown(f'**{profile_data.get("year")}**')
+                    st.markdown("##### 🔹 한줄 소개")
+                    st.markdown(f'**{profile_data.get("introduction")}**')
 
-                    with col3:
-                        st.markdown("##### 🔹 희망 진로")
-                        careers = profile_data.get("career")
-                        for career in careers:
-                            st.markdown(f'**{career}**')
-                        st.markdown("##### 🔹 소개 링크")
-                        st.markdown(f'**{profile_data.get("link")}**')
+                with col3:
+                    st.markdown("##### 🔹 희망 진로")
+                    careers = profile_data.get("career")
+                    for career in careers:
+                        st.markdown(f'**{career}**')
+                    st.markdown("##### 🔹 소개 링크")
+                    st.markdown(f'**{profile_data.get("link")}**')
+                
+                st.markdown("#### 🔮 시각화 / 분석 / 엔지니어링 LEVEL")
+                conf_data = [profile_data.get("visual_conf") / 10, profile_data.get("analy_conf") / 10, profile_data.get("engin_conf") / 10, profile_data.get("program_conf") / 10]
+                fig = plot_circle(conf_data)
+                st.pyplot(fig)
+                
+                st.markdown("#### 🔨 시각화 stacks")
+                v_col1, v_col2, v_col3, v_col4, v_col5, v_col6 = st.columns(6)
+                a_cols = [v_col1, v_col2, v_col3, v_col4, v_col5, v_col6]
+                v_num = 0
+                if profile_data.get("visual_stacks") == ['없음']:
+                    st.markdown("**없음**")
+                else:
+                    for stack in profile_data.get("visual_stacks"):  
+                        with a_cols[v_num%6]:
+                            st.image(visual_img[stack])
+                            st.markdown(f"<center>{profile_data.get('visual_stacks')[v_num]}</center>", unsafe_allow_html=True)
+                        v_num+=1
+                
+                st.markdown("#### 🔨 분석 stacks")
+                a_col1, a_col2, a_col3, a_col4, a_col5, a_col6 = st.columns(6)
+                a_cols = [a_col1, a_col2, a_col3, a_col4, a_col5, a_col6]
+                a_num = 0
+                if profile_data.get("analy_stacks") == ['없음']:
+                    st.markdown("**없음**")
+                else:
+                    for stack in profile_data.get("analy_stacks"):  
+                        with a_cols[a_num%6]:
+                            st.image(analy_img[stack])
+                            st.markdown(f"<center>{profile_data.get('analy_stacks')[a_num]}</center>", unsafe_allow_html=True)
+                        a_num+=1
                     
-                    st.markdown("#### 🔮 시각화 / 분석 / 엔지니어링 LEVEL")
-                    conf_data = [profile_data.get("visual_conf") / 10, profile_data.get("analy_conf") / 10, profile_data.get("engin_conf") / 10, profile_data.get("program_conf") / 10]
-                    fig = plot_circle(conf_data)
-                    st.pyplot(fig)
+                st.markdown("#### 🔨 엔지니어링 stacks")
+                e_col1, e_col2, e_col3, e_col4, e_col5, e_col6  = st.columns(6)
+                e_cols = [e_col1, e_col2, e_col3, e_col4, e_col5, e_col6 ]
+                e_num = 0
+                if profile_data.get("engin_stacks") == ['없음']:
+                    st.markdown("**없음**")
+                else:
+                    for stack in profile_data.get("engin_stacks"):  
+                        with e_cols[e_num%6]:
+                            st.image(engin_img[stack])
+                            st.markdown(f"<center>{profile_data.get('engin_stacks')[e_num]}</center>", unsafe_allow_html=True)
+                        e_num+=1
                     
-                    st.markdown("#### 🔨 시각화 stacks")
-                    v_col1, v_col2, v_col3, v_col4, v_col5, v_col6 = st.columns(6)
-                    a_cols = [v_col1, v_col2, v_col3, v_col4, v_col5, v_col6]
-                    v_num = 0
-                    if profile_data.get("visual_stacks") == ['없음']:
-                        st.markdown("**없음**")
-                    else:
-                        for stack in profile_data.get("visual_stacks"):  
-                            with a_cols[v_num%6]:
-                                st.image(visual_img[stack])
-                                st.markdown(f"<center>{profile_data.get('visual_stacks')[v_num]}</center>", unsafe_allow_html=True)
-                            v_num+=1
-                    
-                    st.markdown("#### 🔨 분석 stacks")
-                    a_col1, a_col2, a_col3, a_col4, a_col5, a_col6 = st.columns(6)
-                    a_cols = [a_col1, a_col2, a_col3, a_col4, a_col5, a_col6]
-                    a_num = 0
-                    if profile_data.get("analy_stacks") == ['없음']:
-                        st.markdown("**없음**")
-                    else:
-                        for stack in profile_data.get("analy_stacks"):  
-                            with a_cols[a_num%6]:
-                                st.image(analy_img[stack])
-                                st.markdown(f"<center>{profile_data.get('analy_stacks')[a_num]}</center>", unsafe_allow_html=True)
-                            a_num+=1
+                st.markdown("#### 🔨 개발 stacks")
+                p_col1, p_col2, p_col3, p_col4, p_col5, p_col6 = st.columns(6)
+                p_cols = [p_col1, p_col2, p_col3, p_col4, p_col5, p_col6 ]
+                p_num = 0
+                if profile_data.get("program_stacks") == ['없음']:
+                    st.markdown("**없음**")
+                else:
+                    for stack in profile_data.get("program_stacks"):  
+                        with p_cols[p_num%6]:
+                            st.image(program_img[stack])
+                            st.markdown(f"<center>{profile_data.get('program_stacks')[p_num]}</center>", unsafe_allow_html=True)
+                        p_num+=1
+                
+                st.markdown("#### 🎨 생성한 아이디어")
+                ideas = db.collection('idea').where('who', '==', st.session_state['email']).stream()
+                
+                for idea in ideas:
+                    idea_data = idea.to_dict()
+                    if idea_data.get('who') == st.session_state['email']:
+                        # Firestore에서 해당 아이디어 문서를 가져옵니다.
+                        idea_document_ref = db.collection('idea').document(idea.id)
+                        idea_document = idea_document_ref.get()
+                        current_status = idea_document.to_dict().get('status')
+                        if current_status:
+                            status = ' (모집 중)'
+                        else:
+                            status = ' (모집 완료)'
                         
-                    st.markdown("#### 🔨 엔지니어링 stacks")
-                    e_col1, e_col2, e_col3, e_col4, e_col5, e_col6  = st.columns(6)
-                    e_cols = [e_col1, e_col2, e_col3, e_col4, e_col5, e_col6 ]
-                    e_num = 0
-                    if profile_data.get("engin_stacks") == ['없음']:
-                        st.markdown("**없음**")
-                    else:
-                        for stack in profile_data.get("engin_stacks"):  
-                            with e_cols[e_num%6]:
-                                st.image(engin_img[stack])
-                                st.markdown(f"<center>{profile_data.get('engin_stacks')[e_num]}</center>", unsafe_allow_html=True)
-                            e_num+=1
-                        
-                    st.markdown("#### 🔨 개발 stacks")
-                    p_col1, p_col2, p_col3, p_col4, p_col5, p_col6 = st.columns(6)
-                    p_cols = [p_col1, p_col2, p_col3, p_col4, p_col5, p_col6 ]
-                    p_num = 0
-                    if profile_data.get("program_stacks") == ['없음']:
-                        st.markdown("**없음**")
-                    else:
-                        for stack in profile_data.get("program_stacks"):  
-                            with p_cols[p_num%6]:
-                                st.image(program_img[stack])
-                                st.markdown(f"<center>{profile_data.get('program_stacks')[p_num]}</center>", unsafe_allow_html=True)
-                            p_num+=1
-                    
+                        with st.expander(idea_data.get('emoji') + idea_data.get('headliner') + status):
+                            headliner = idea_data.get('headliners')
+                            st.markdown(f'**{headliner}**')
+                            
+                            st.subheader("이모지")
+                            emoji = idea_data.get('emoji')
+                            st.markdown(f'**{emoji}**')
+                            
+                            st.subheader("What?")
+                            what = idea_data.get('what')
+                            st.markdown(f'**{what}**')
+                            
+                            st.subheader("Why?")
+                            why= idea_data.get('why')
+                            st.markdown(f'**{why}**')
+                            
+                            st.subheader("How?")
+                            how = idea_data.get('how')
+                            st.markdown(f'**{how}**')
+                            
+                            st.subheader("When?")
+                            when = idea_data.get('when')
+                            st.markdown(f'**{when}**')
 
+                            st.subheader("참고 링크")
+                            link = idea_data.get('link')
+                            st.markdown(f'**{link}**')
+                            
+                            if st.button("수정하기", key = idea.id +"수정"):
+                                pass
+
+                            if idea_document.exists and current_status == True:
+                                if st.button("모집 완료하기", key=idea.id + "모집완료"):      
+                                    # status 값을 반전시킵니다.
+                                    new_status = not current_status
+
+                                    # 문서의 status를 업데이트합니다.
+                                    idea_document_ref.update({'status': new_status})
+                                    st.rerun()
+                            elif idea_document.exists and current_status == False:
+                                if st.button("모집 상태로 바꾸기", key=idea.id + "모집 중"):      
+                                    # status 값을 반전시킵니다.
+                                    new_status = not current_status
+
+                                    # 문서의 status를 업데이트합니다.
+                                    idea_document_ref.update({'status': new_status})
+                                    st.rerun()
+
+                            
+                            # '삭제하기' 버튼
+                            if st.button("삭제하기", key=idea.id + "삭제"):
+                                # 세션 상태에 삭제할 문서 ID 저장
+                                st.session_state['delete_id'] = idea.id
+
+                                # Firestore에서 문서 삭제
+                                document_id = st.session_state['delete_id']  # 세션 상태에서 문서의 ID를 가져옴
+                                # Firestore 문서 삭제 로직
+                                db.collection('idea').document(document_id).delete()
+                                st.write('삭제되었습니다.')
+
+                                del st.session_state['delete_id']  # 세션 상태에서 삭제 ID 제거
+                                st.rerun()
+                                    
+                                
+                    
+                    st.markdown("#### 🔖 북마크")
+                    
+                    profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
+
+                    for profile in profiles:
+                        profile_data = profile.to_dict()
+                        # 'bookmark' 필드가 없는 경우 빈 리스트로 처리
+                        bookmarks = profile_data.get("bookmark", [])
+                        for bookmarked in bookmarks:
+                            # 실제 문서 데이터를 가져옴
+                            idea_document = db.collection('idea').document(bookmarked).get()
+                            if idea_document.exists:
+                                # 문서 데이터에서 필요한 정보 추출
+                                idea_data = idea_document.to_dict()
+                                headliner = idea_data.get('headliner')  # 필드 이름 확인 및 수정
+                                emoji = idea_data.get('emoji')
+                                
+                                with st.expander(f"{emoji} {headliner}"):
+                                    headliner = idea_data.get('headliners')
+                                    st.markdown(f'**{headliner}**')
+                                    
+                                    st.subheader("이모지")
+                                    emoji = idea_data.get('emoji')
+                                    st.markdown(f'**{emoji}**')
+                                    
+                                    st.subheader("What?")
+                                    what = idea_data.get('what')
+                                    st.markdown(f'**{what}**')
+                                    
+                                    st.subheader("Why?")
+                                    why= idea_data.get('why')
+                                    st.markdown(f'**{why}**')
+                                    
+                                    st.subheader("How?")
+                                    how = idea_data.get('how')
+                                    st.markdown(f'**{how}**')
+                                    
+                                    st.subheader("When?")
+                                    when = idea_data.get('when')
+                                    st.markdown(f'**{when}**')
+
+                                    st.subheader("참고 링크")
+                                    link = idea_data.get('link')
+                                    st.markdown(f'**{link}**')
+
+                                    if st.button("북마크 해제하기", key = idea_document.id):
+                                        profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
+
+                                        for profile in profiles:
+                                            profile_data = profile.to_dict()
+                                            if profile_data.get('email') == st.session_state['email']:
+                                                # 북마크 리스트 초기화 및 업데이트
+                                                bookmarks = profile_data.get('bookmark', [])
+                                                bookmarks.remove(idea_document.id)
+                                                updated_data = {"bookmark": bookmarks}
+
+                                                # 해당 문서 업데이트
+                                                db.collection('profile').document(profile.id).set(updated_data, merge=True)
+                                                st.rerun()
+
+                    st.markdown("<br/><br/><br/><br/><br/><br/>", unsafe_allow_html=True)
+                    
             if not found:
                 st.write("검색된 사람이 없습니다.")
 
