@@ -1,0 +1,13 @@
+firebase-admin
+streamlit
+streamlit-option-menu
+ploty.express
+numpy
+pandas
+streamlit_plotly_events
+PIL
+matplotlib
+
+# https://myun9-cloud.tistory.com/3
+plotly.express
+streamlit_plotly_events
