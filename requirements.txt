@@ -5,7 +5,6 @@ plotly.express
 numpy
 pandas
 streamlit_plotly_events
-PIL
 matplotlib
 
 # https://myun9-cloud.tistory.com/3
