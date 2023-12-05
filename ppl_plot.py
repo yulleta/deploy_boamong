@@ -612,67 +612,67 @@ def show_ppl_plot():
                                     
                                 
                     
-                    st.markdown("#### 🔖 북마크")
-                    
-                    profiles = db.collection('profile').where('email', '==', profile_data.get('email')).stream()
+                st.markdown("#### 🔖 북마크")
+                
+                profiles = db.collection('profile').where('email', '==', profile_data.get('email')).stream()
 
-                    for profile in profiles:
-                        profile_data = profile.to_dict()
-                        # 'bookmark' 필드가 없는 경우 빈 리스트로 처리
-                        bookmarks = profile_data.get("bookmark", [])
-                        for bookmarked in bookmarks:
-                            # 실제 문서 데이터를 가져옴
-                            idea_document = db.collection('idea').document(bookmarked).get()
-                            if idea_document.exists:
-                                # 문서 데이터에서 필요한 정보 추출
-                                idea_data = idea_document.to_dict()
-                                headliner = idea_data.get('headliner')  # 필드 이름 확인 및 수정
-                                emoji = idea_data.get('emoji')
+                for profile in profiles:
+                    profile_data = profile.to_dict()
+                    # 'bookmark' 필드가 없는 경우 빈 리스트로 처리
+                    bookmarks = profile_data.get("bookmark", [])
+                    for bookmarked in bookmarks:
+                        # 실제 문서 데이터를 가져옴
+                        idea_document = db.collection('idea').document(bookmarked).get()
+                        if idea_document.exists:
+                            # 문서 데이터에서 필요한 정보 추출
+                            idea_data = idea_document.to_dict()
+                            headliner = idea_data.get('headliner')  # 필드 이름 확인 및 수정
+                            emoji = idea_data.get('emoji')
+                            
+                            with st.expander(f"{emoji} {headliner}"):
+                                headliner = idea_data.get('headliners')
+                                st.markdown(f'**{headliner}**')
                                 
-                                with st.expander(f"{emoji} {headliner}"):
-                                    headliner = idea_data.get('headliners')
-                                    st.markdown(f'**{headliner}**')
-                                    
-                                    st.subheader("이모지")
-                                    emoji = idea_data.get('emoji')
-                                    st.markdown(f'**{emoji}**')
-                                    
-                                    st.subheader("What?")
-                                    what = idea_data.get('what')
-                                    st.markdown(f'**{what}**')
-                                    
-                                    st.subheader("Why?")
-                                    why= idea_data.get('why')
-                                    st.markdown(f'**{why}**')
-                                    
-                                    st.subheader("How?")
-                                    how = idea_data.get('how')
-                                    st.markdown(f'**{how}**')
-                                    
-                                    st.subheader("When?")
-                                    when = idea_data.get('when')
-                                    st.markdown(f'**{when}**')
+                                st.subheader("이모지")
+                                emoji = idea_data.get('emoji')
+                                st.markdown(f'**{emoji}**')
+                                
+                                st.subheader("What?")
+                                what = idea_data.get('what')
+                                st.markdown(f'**{what}**')
+                                
+                                st.subheader("Why?")
+                                why= idea_data.get('why')
+                                st.markdown(f'**{why}**')
+                                
+                                st.subheader("How?")
+                                how = idea_data.get('how')
+                                st.markdown(f'**{how}**')
+                                
+                                st.subheader("When?")
+                                when = idea_data.get('when')
+                                st.markdown(f'**{when}**')
 
-                                    st.subheader("참고 링크")
-                                    link = idea_data.get('link')
-                                    st.markdown(f'**{link}**')
+                                st.subheader("참고 링크")
+                                link = idea_data.get('link')
+                                st.markdown(f'**{link}**')
 
-                                    if st.button("북마크 해제하기", key = idea_document.id):
-                                        profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
+                                if st.button("북마크 해제하기", key = idea_document.id):
+                                    profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
 
-                                        for profile in profiles:
-                                            profile_data = profile.to_dict()
-                                            if profile_data.get('email') == st.session_state['email']:
-                                                # 북마크 리스트 초기화 및 업데이트
-                                                bookmarks = profile_data.get('bookmark', [])
-                                                bookmarks.remove(idea_document.id)
-                                                updated_data = {"bookmark": bookmarks}
+                                    for profile in profiles:
+                                        profile_data = profile.to_dict()
+                                        if profile_data.get('email') == st.session_state['email']:
+                                            # 북마크 리스트 초기화 및 업데이트
+                                            bookmarks = profile_data.get('bookmark', [])
+                                            bookmarks.remove(idea_document.id)
+                                            updated_data = {"bookmark": bookmarks}
 
-                                                # 해당 문서 업데이트
-                                                db.collection('profile').document(profile.id).set(updated_data, merge=True)
-                                                st.rerun()
+                                            # 해당 문서 업데이트
+                                            db.collection('profile').document(profile.id).set(updated_data, merge=True)
+                                            st.rerun()
 
-                    st.markdown("<br/><br/><br/><br/><br/><br/>", unsafe_allow_html=True)
+                st.markdown("<br/><br/><br/><br/><br/><br/>", unsafe_allow_html=True)
                     
             if not found:
                 st.write("검색된 사람이 없습니다.")
