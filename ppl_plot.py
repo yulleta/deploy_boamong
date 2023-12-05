@@ -533,7 +533,7 @@ def show_ppl_plot():
                         p_num+=1
                 
                 st.markdown("#### 🎨 생성한 아이디어")
-                ideas = db.collection('idea').where('who', '==', st.session_state['email']).stream()
+                ideas = db.collection('idea').where('who', '==', profile_data.get('email')).stream()
                 
                 for idea in ideas:
                     idea_data = idea.to_dict()
@@ -614,7 +614,7 @@ def show_ppl_plot():
                     
                     st.markdown("#### 🔖 북마크")
                     
-                    profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
+                    profiles = db.collection('profile').where('email', '==', profile_data.get('email')).stream()
 
                     for profile in profiles:
                         profile_data = profile.to_dict()
