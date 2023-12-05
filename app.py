@@ -97,6 +97,7 @@ else:
         )
         
         st.caption("F5키를 누르거나 새로고침을 하면 로그인 화면으로 돌아갑니다")
+        st.caption("사이트 개발자/소모임 부장 : 21기 분석 김민경")
     
     if page == "보아몽 공작소?":
         show_info_page()
