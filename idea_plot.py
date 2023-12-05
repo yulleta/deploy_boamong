@@ -194,7 +194,6 @@ def show_idea_plot():
         for profile in profile_docs:
             profile_data = profile.to_dict()
             who.append(str(profile_data.get('year', 'Unknown')) +'기 '+ profile_data.get('name', 'Unknown'))  # 이름이 없는 경우 기본값 'Unknown'
-          
             
     # Normalize the values from 0-20 to 0-1
     impact_normalized = [x / 20 for x in impact_values]
@@ -337,31 +336,31 @@ def show_idea_plot():
         
         st.subheader("아이디어 한줄 소개")
         headliner = selected_df['headliners']
-        st.markdown(f'**{headliner}**')
+        st.markdown(headliner)
         
         st.subheader("이모지")
         emoji = selected_df['label']
-        st.markdown(f'**{emoji}**')
+        st.markdown(emoji)
         
         st.subheader("What?")
         what = selected_df['what']
-        st.markdown(f'**{what}**')
+        st.markdown(what)
         
         st.subheader("Why?")
         why= selected_df['why']
-        st.markdown(f'**{why}**')
+        st.markdown(why)
         
         st.subheader("How?")
         how = selected_df['how']
-        st.markdown(f'**{how}**')
+        st.markdown(how)
         
         st.subheader("When?")
         when = selected_df['when']
-        st.markdown(f'**{when}**')
+        st.markdown(when)
 
         st.subheader("참고 링크")
         link = selected_df['link']
-        st.markdown(f'**{link}**')
+        st.markdown(link)
         
 
         if st.button("✨북마크하기"):
