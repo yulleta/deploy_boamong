@@ -266,31 +266,31 @@ def show_user_page():
                             
                             st.subheader("아이디어 한줄소개")
                             headliner = idea_data.get('headliner')
-                            st.markdown(f'**{headliner}**')
+                            st.markdown(headliner)
                             
                             st.subheader("이모지")
                             emoji = idea_data.get('emoji')
-                            st.markdown(f'**{emoji}**')
+                            st.markdown(emoji)
                             
                             st.subheader("What?")
                             what = idea_data.get('what')
-                            st.markdown(f'**{what}**')
+                            st.markdown(what)
                             
                             st.subheader("Why?")
                             why= idea_data.get('why')
-                            st.markdown(f'**{why}**')
+                            st.markdown(why)
                             
                             st.subheader("How?")
                             how = idea_data.get('how')
-                            st.markdown(f'**{how}**')
+                            st.markdown(how)
                             
                             st.subheader("When?")
                             when = idea_data.get('when')
-                            st.markdown(f'**{when}**')
+                            st.markdown(when)
 
                             st.subheader("참고 링크")
                             link = idea_data.get('link')
-                            st.markdown(f'**{link}**')
+                            st.markdown(link)
                             
                             if st.button("수정하기", key = idea.id +"수정"):
                                 st.session_state['idea_modify'] = idea.id
@@ -397,31 +397,31 @@ def show_user_page():
                         
                         with st.expander(f"{emoji} {headliner}"):
                             headliner = idea_data.get('headliners')
-                            st.markdown(f'**{headliner}**')
+                            st.markdown(headliner)
                             
                             st.subheader("이모지")
                             emoji = idea_data.get('emoji')
-                            st.markdown(f'**{emoji}**')
+                            st.markdown(emoji)
                             
                             st.subheader("What?")
                             what = idea_data.get('what')
-                            st.markdown(f'**{what}**')
+                            st.markdown(what)
                             
                             st.subheader("Why?")
                             why= idea_data.get('why')
-                            st.markdown(f'**{why}**')
+                            st.markdown(why)
                             
                             st.subheader("How?")
                             how = idea_data.get('how')
-                            st.markdown(f'**{how}**')
+                            st.markdown(how)
                             
                             st.subheader("When?")
                             when = idea_data.get('when')
-                            st.markdown(f'**{when}**')
+                            st.markdown(when)
 
                             st.subheader("참고 링크")
                             link = idea_data.get('link')
-                            st.markdown(f'**{link}**')
+                            st.markdown(link)
 
                             if st.button("북마크 해제하기", key = idea_document.id):
                                 profiles = db.collection('profile').where('email', '==', st.session_state['email']).stream()
