@@ -1,7 +1,7 @@
 firebase-admin
 streamlit
 streamlit-option-menu
-ploty.express
+plotly.express
 numpy
 pandas
 streamlit_plotly_events
