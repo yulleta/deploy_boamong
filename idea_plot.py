@@ -220,9 +220,10 @@ def show_idea_plot():
     # Adjust '임팩트' values to avoid overlap
     for i in range(len(df)):
         for j in range(i + 1, len(df)):
-            if df.iloc[i]['임팩트'] == df.iloc[j]['임팩트'] and df.iloc[i]['구현 난이도'] == df.iloc[j]['구현 난이도']:
+            if df.iloc[i]['임팩트'] == df.iloc[j]['임팩트']:
                 # Increment one of the '임팩트' values to avoid overlap
                 df.at[j, '임팩트'] -= 0.02
+                df.at[j, '구현 난이도'] -= 0.02
         
     # Create a scatter plot
     fig = px.scatter(df, x='임팩트', y='구현 난이도', text='label')
