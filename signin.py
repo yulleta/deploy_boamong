@@ -41,7 +41,7 @@ def show_signin_page():
     st.header("보아몽 공작소🔨🎨🐘💭")
     st.header("로그인")
 
-    email = st.text_input('Email', key='signin_email')
+    email = st.text_input('Email', key='signin_email').strip()
 
     st.caption("로그인 버튼을 눌러주세요")
     if st.button('로그인'):
