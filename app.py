@@ -13,6 +13,8 @@ from idea_plot import show_idea_plot
 from ppl_plot import show_ppl_plot
 from info import show_info_page
 
+st.set_page_config(page_title = "보아몽 공작소")
+
 # Firebase 초기화 체크 및 실행
 if not firebase_admin._apps:
     firebase_config = {
