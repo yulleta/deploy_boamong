@@ -35,7 +35,7 @@ def show_signup_page():
     # 회원가입 양식 필드
     email = st.text_input('Email (Signup)', key='signup_email').strip() 
     name = st.text_input('이름', key='signup_name').strip()
-    year = st.number_input('기수', min_value=1, key='signup_year').strip()
+    year = str(st.number_input('기수', min_value=1, key='signup_year')).strip()
     interest= ["없음"]
     career = ["없음"]
     introduction = "한줄 소개"
