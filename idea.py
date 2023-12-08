@@ -70,7 +70,7 @@ def create_idea_page():
             "headliner" : headliner,
             "emoji" : emoji,
             "status" : True,
-            'timestamp': datetime.now(),
+            'timestamp': datetime.datetime.now(),
         }
         
         # Firestore에 데이터 저장 또는 업데이트
