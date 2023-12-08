@@ -329,11 +329,26 @@ def show_user_page():
                                 document_id = st.session_state['delete_id']  # 세션 상태에서 문서의 ID를 가져옴
                                 # Firestore 문서 삭제 로직
                                 db.collection('idea').document(document_id).delete()
-                                st.write('삭제되었습니다.')
 
                                 del st.session_state['delete_id']  # 세션 상태에서 삭제 ID 제거
+                                
+                                # 'idea' 컬렉션의 문서들을 timestamp를 기준으로 정렬
+                                docs_ref = db.collection('idea')
+                                query = docs_ref.order_by('timestamp', direction=firestore.Query.DESCENDING).limit(1)
+                                latest_document = query.stream()
+                                
+                                for doc in latest_document:
+                                    latest_document_id = doc.id
+                                    break  # 최신 문서 하나만 필요하므로 반복문 종료
+                                
+                                latest_idea_ref = db.collection('latestIdea').document('latestIdea')  # 'your_document_id'를 실제 문서 ID로 대체해야 합니다.
+                                latest_idea_ref.set({
+                                    'latest_idea_id': latest_document_id
+                                }, merge=True)  # 'merge=True'를 사용하여 문서를 업데이트합니다.
+                                
+                                st.write('삭제되었습니다.')
                                 st.rerun()
-                    else:
+
                         with st.expander(idea_data.get('emoji') + idea_data.get('headliner'), expanded = True):
                             st.subheader("아이디어 한줄소개")
                             headliner = st.text_input('아이디어 한줄 소개', value = idea_data.get('headliner'))
