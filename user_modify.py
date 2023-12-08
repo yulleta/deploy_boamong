@@ -32,7 +32,9 @@ def modify_user_page():
         profile_data = profile.to_dict()
         if profile_data.get('email') == st.session_state['email']:
 
-            interest_options = ["없음", "스포츠⚽", "예술(문화활동)🎨" , "과학기술🧪🔨", "여행🧳", "맛집🍽", "건강💪", "경제💸", "사회🌐"]
+            interest_options = ["없음", "축구⚽", "농구🏀", "야구⚾", "테니스🎾",
+                "그림 그리기🖌️", "음악🎵", "연극🎭", "사진📷", "무용💃", "아트 전시🏛️",
+                "과학기술🧪🔨", "여행🧳", "맛집🍽", "건강💪", "경제💸", "사회🌐", "환경🌍"]
             career_options = ['없음', '데이터 분석/시각화', '데이터 과학/ML/DL', '데이터 엔지니어링','프론트엔드', '백엔드','앱개발', '마케팅', '보안']
 
             visual_stack_options = ['없음', 'googleDataStudio', 'powerBI', 'Tableau']
