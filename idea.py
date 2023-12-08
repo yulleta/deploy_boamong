@@ -4,6 +4,7 @@ from firebase_admin import firestore
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 
 # Firebase 초기화 체크 및 실행
 if not firebase_admin._apps:
@@ -69,6 +70,7 @@ def create_idea_page():
             "headliner" : headliner,
             "emoji" : emoji,
             "status" : True,
+            'timestamp': datetime.now(),
         }
         
         # Firestore에 데이터 저장 또는 업데이트
