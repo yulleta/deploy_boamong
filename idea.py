@@ -51,7 +51,7 @@ def create_idea_page():
     when = st.text_area('아이디어를 실행하는 기간 / 실행을 시작하는 기간은 언제로 예상하나요? 꼭 지금 당장 실행하지 않아도 됩니다', key = "create_idea_when")
     
     st.subheader("Who?")
-    with_who = st.text_area('어떤 스택/기술을 가진 사람과 함께하고 싶나요?', key = "create_idea_when")
+    with_who = st.text_area('어떤 스택/기술을 가진 사람과 함께하고 싶나요?', key = "create_idea_with_who")
 
     st.subheader("참고 링크")
     link = st.text_input('아이디어를 더 자세히 소개할 수 있는 참고 링크를 첨부해 주세요')
