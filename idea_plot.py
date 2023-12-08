@@ -169,6 +169,7 @@ def show_idea_plot():
     when = []
     who = []
     why = []
+    with_who = []
     link = []
     status = []
     id = []
@@ -187,6 +188,7 @@ def show_idea_plot():
         how.append(data.get('how'))
         what.append(data.get('what'))
         when.append(data.get('when'))
+        with_who.append(data.get('with_who'))
         why.append(data.get('why'))
         link.append(data.get('link'))
         status.append(data.get('status'))
@@ -208,6 +210,7 @@ def show_idea_plot():
         'what' : what,
         'when' : when,
         'why' : why,
+        'with_who' : with_who,
         'link' : link,
         'status' :status,
         'who' : who,
@@ -358,6 +361,10 @@ def show_idea_plot():
         st.subheader("When?")
         when = selected_df['when']
         st.markdown(when)
+        
+        st.subheader("Who?")
+        with_who = selected_df['with_who']
+        st.markdown(with_who)
 
         st.subheader("참고 링크")
         link = selected_df['link']

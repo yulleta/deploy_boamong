@@ -570,6 +570,10 @@ def show_ppl_plot():
                             st.subheader("When?")
                             when = idea_data.get('when')
                             st.markdown(when)
+                            
+                            st.subheader("Who?")
+                            with_who = idea_data.get('with_who')
+                            st.markdown(with_who)
 
                             st.subheader("참고 링크")
                             link = idea_data.get('link')
@@ -652,6 +656,10 @@ def show_ppl_plot():
                                 st.subheader("When?")
                                 when = idea_data.get('when')
                                 st.markdown(when)
+                                
+                                st.subheader("Who?")
+                                with_who = idea_data.get('with_who')
+                                st.markdown(with_who)
 
                                 st.subheader("참고 링크")
                                 link = idea_data.get('link')
