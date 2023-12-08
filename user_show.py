@@ -329,10 +329,13 @@ def show_user_page():
                                 document_id = st.session_state['delete_id']  # 세션 상태에서 문서의 ID를 가져옴
                                 # Firestore 문서 삭제 로직
                                 db.collection('idea').document(document_id).delete()
+                                st.write('삭제되었습니다.')
 
                                 del st.session_state['delete_id']  # 세션 상태에서 삭제 ID 제거
                                 st.rerun()
-
+                                
+                                
+                    else:
                         with st.expander(idea_data.get('emoji') + idea_data.get('headliner'), expanded = True):
                             st.subheader("아이디어 한줄소개")
                             headliner = st.text_input('아이디어 한줄 소개', value = idea_data.get('headliner'))
