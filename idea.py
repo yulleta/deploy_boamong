@@ -30,6 +30,7 @@ db = firestore.client()
 
 def create_idea_page():
     st.header("💡 아이디어를 간략히 소개해 주세요")
+    st.markdown("❗ Tip!! chatp GPT를 이용하면 더 빠르게 내용을 채울 수 있습니다")
     
     st.subheader("아이디어 한줄 소개")
     headliner = st.text_input('아이디어 한줄 소개')
